@@ -58,7 +58,7 @@ export interface PropertyDetails {
 
 export const property: PropertyDetails = {
   name: "Mammoth Conestoga 112",
-  shortName: "Conestoga 112",
+  shortName: "Mammoth Conestoga 112",
   tagline: "High-Elevation Sanctuary.",
   subheadline: "A refined mountain residence engineered for the cadence of the Eastern Sierra—uniting alpine utility with architectural calm.",
   coordinates: {
