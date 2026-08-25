@@ -2,15 +2,36 @@
 import { property } from '../data/property';
 ---
 
-<section class="relative min-h-[90vh] lg:min-h-[92vh] flex items-center justify-center overflow-hidden bg-charcoal-950">
-  <!-- Background Image with High-Contrast Mountain Overlay -->
+<section class="relative min-h-[90vh] lg:min-h-[94vh] flex items-center justify-center overflow-hidden bg-charcoal-950" id="hero-section">
+  <!-- Background Image Layers with Smooth Cross-Fade Rotation -->
   <div class="absolute inset-0 z-0">
-    <img 
-      src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2560&q=85" 
-      alt="Majestic snow-covered mountain peaks in the high Eastern Sierra" 
-      class="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-subtle-zoom brightness-70"
-      loading="eager"
-    />
+    
+    <!-- Slide 1: Winter Alpine Powder & Snowy Peaks -->
+    <div 
+      id="hero-bg-winter" 
+      class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100"
+    >
+      <img 
+        src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=2560&q=85" 
+        alt="Majestic snow-covered mountain peaks in the high Eastern Sierra" 
+        class="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-subtle-zoom brightness-70"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Slide 2: Sierra Summer Lakes & Granite Crests -->
+    <div 
+      id="hero-bg-summer" 
+      class="absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0"
+    >
+      <img 
+        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2560&q=85" 
+        alt="Pristine high-alpine mountain lake and granite peaks in Mammoth Lakes Basin" 
+        class="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-subtle-zoom brightness-70"
+        loading="eager"
+      />
+    </div>
+
     <!-- Multi-stage gradient overlays -->
     <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/60 to-charcoal-950/70"></div>
     <div class="absolute inset-0 bg-radial-vignette opacity-70"></div>
@@ -22,14 +43,37 @@ import { property } from '../data/property';
   <!-- Hero Content Container -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
     
-    <!-- Topographic & Elevation Badge (Recognition Code #1) -->
-    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-alpine border border-white/15 bg-charcoal-900/80 backdrop-blur-md text-xs font-mono text-alabaster-300 tracking-wider mb-6 shadow-alpine-subtle">
-      <span class="inline-block w-2 h-2 rounded-full bg-alpenglow animate-pulse"></span>
-      <span>{property.coordinates.display}</span>
-      <span class="text-white/30">&bull;</span>
-      <span>ELEV. {property.elevation}</span>
-      <span class="text-white/30">&bull;</span>
-      <span class="text-alpenglow font-semibold">UNIT 112</span>
+    <!-- Topographic & Season Indicator Controls -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+      <!-- Location & Elevation Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-alpine border border-white/15 bg-charcoal-900/80 backdrop-blur-md text-xs font-mono text-alabaster-300 tracking-wider shadow-alpine-subtle">
+        <span class="inline-block w-2 h-2 rounded-full bg-alpenglow animate-pulse"></span>
+        <span>{property.coordinates.display}</span>
+        <span class="text-white/30">&bull;</span>
+        <span>ELEV. {property.elevation}</span>
+        <span class="text-white/30">&bull;</span>
+        <span class="text-alpenglow font-semibold">UNIT 112</span>
+      </div>
+
+      <!-- Interactive Season Switcher Pill -->
+      <div class="inline-flex items-center p-0.5 rounded-alpine border border-white/15 bg-charcoal-900/90 backdrop-blur-md text-[11px] font-mono shadow-alpine-subtle">
+        <button 
+          type="button" 
+          id="btn-season-winter"
+          class="px-2.5 py-1 rounded-alpine text-white bg-white/15 border border-white/20 transition-all font-semibold flex items-center gap-1"
+          aria-label="Show Winter View"
+        >
+          <span>❄️</span> <span>Winter</span>
+        </button>
+        <button 
+          type="button" 
+          id="btn-season-summer"
+          class="px-2.5 py-1 rounded-alpine text-alabaster-400 hover:text-white transition-all flex items-center gap-1"
+          aria-label="Show Summer View"
+        >
+          <span>☀️</span> <span>Summer</span>
+        </button>
+      </div>
     </div>
 
     <!-- Main Editorial Display Headline -->
@@ -39,11 +83,11 @@ import { property } from '../data/property';
     </h1>
 
     <!-- Supporting Narrative -->
-    <p class="max-w-2xl text-base sm:text-xl text-alabaster-200 font-light leading-relaxed mb-10 text-balance">
+    <p class="max-w-2xl text-base sm:text-xl text-alabaster-200 font-light leading-relaxed mb-10 text-balance" id="hero-narrative">
       A refined mountain basecamp engineered for the cadence of the Eastern Sierra—where heavy-duty alpine readiness meets quiet timber warmth at 8,000 feet.
     </p>
 
-    <!-- Key Trust & Feature Pills (Direct Recognition) -->
+    <!-- Key Trust & Feature Pills -->
     <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-10 max-w-4xl">
       <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-alpine bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white backdrop-blur-sm">
         <span class="text-amber-400 font-bold">★ 4.91</span>
@@ -108,3 +152,46 @@ import { property } from '../data/property';
     </svg>
   </div>
 </section>
+
+<script>
+  let currentSeason = 'winter';
+  const winterBg = document.getElementById('hero-bg-winter');
+  const summerBg = document.getElementById('hero-bg-summer');
+  const btnWinter = document.getElementById('btn-season-winter');
+  const btnSummer = document.getElementById('btn-season-summer');
+
+  function setSeason(season: 'winter' | 'summer') {
+    currentSeason = season;
+    if (season === 'winter') {
+      winterBg?.classList.replace('opacity-0', 'opacity-100');
+      summerBg?.classList.replace('opacity-100', 'opacity-0');
+      
+      btnWinter?.classList.add('text-white', 'bg-white/15', 'border-white/20', 'font-semibold');
+      btnWinter?.classList.remove('text-alabaster-400');
+      
+      btnSummer?.classList.remove('text-white', 'bg-white/15', 'border-white/20', 'font-semibold');
+      btnSummer?.classList.add('text-alabaster-400');
+    } else {
+      summerBg?.classList.replace('opacity-0', 'opacity-100');
+      winterBg?.classList.replace('opacity-100', 'opacity-0');
+      
+      btnSummer?.classList.add('text-white', 'bg-white/15', 'border-white/20', 'font-semibold');
+      btnSummer?.classList.remove('text-alabaster-400');
+      
+      btnWinter?.classList.remove('text-white', 'bg-white/15', 'border-white/20', 'font-semibold');
+      btnWinter?.classList.add('text-alabaster-400');
+    }
+  }
+
+  btnWinter?.addEventListener('click', () => setSeason('winter'));
+  btnSummer?.addEventListener('click', () => setSeason('summer'));
+
+  // Automatic subtle 8-second rotation
+  const interval = setInterval(() => {
+    setSeason(currentSeason === 'winter' ? 'summer' : 'winter');
+  }, 8000);
+
+  // Stop rotation on user interaction
+  btnWinter?.addEventListener('click', () => clearInterval(interval));
+  btnSummer?.addEventListener('click', () => clearInterval(interval));
+</script>
