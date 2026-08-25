@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    background-color: #121417;
+    color: #f7f5f0;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    @apply bg-charcoal-900 text-alabaster-100 font-sans antialiased selection:bg-alpenglow selection:text-white min-h-screen;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #d95a2b;
+    color: #ffffff;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #121417;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2c313a;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d95a2b;
+  }
+}
+
+/* OwnerRez Widget Custom Styling Overrides to blend seamlessly with Brand DNA */
+.ownerrez-widget {
+  width: 100% !important;
+  max-width: 100% !important;
+  color: #121417 !important;
+  border-radius: 4px;
+}
+
+.ownerrez-widget iframe {
+  width: 100% !important;
+  border: none !important;
+  border-radius: 4px !important;
+}
+
+/* Subtle hairline borders */
+.hairline-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-border-light {
+  border: 1px solid rgba(18, 20, 23, 0.08);
+}
+
+/* Glass background overlay */
+.alpine-glass {
+  background: rgba(18, 20, 23, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}

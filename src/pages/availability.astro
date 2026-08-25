@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BookingSection from '../components/BookingSection.astro';
+import ArrivalFaq from '../components/ArrivalFaq.astro';
+import { property } from '../data/property';
+---
+
+<Layout 
+  title={`Availability & Direct Booking — ${property.name}`}
+  description="Check real-time calendar availability, seasonal direct-booking rates, and secure instant reservations for Mammoth Conestoga 112 with zero traveler fees."
+>
+  <div class="py-12 bg-charcoal-950 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-mono text-alpenglow uppercase tracking-widest block mb-2">OFFICIAL DIRECT RATES</span>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+        Calendar & <span class="italic font-normal text-alabaster-200">Reservations</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-sm sm:text-base text-alabaster-300 font-light">
+        Directly book Unit 112 with Roger & Stephanie. Save on third-party service fees with guaranteed real-time availability.
+      </p>
+    </div>
+  </div>
+
+  <BookingSection />
+  <ArrivalFaq />
+</Layout>

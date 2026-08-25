@@ -1,0 +1,156 @@
+---
+import { property } from '../data/property';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-charcoal-900/90 border-b border-white/10" id="site-header">
+  <!-- Top Utility Bar -->
+  <div class="hidden lg:block bg-charcoal-950/80 border-b border-white/5 py-1.5 text-xs font-mono text-alabaster-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <div class="flex items-center space-x-6">
+        <span class="flex items-center text-alabaster-300">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-alpenglow mr-2 animate-pulse"></span>
+          {property.coordinates.display} &bull; ELEV. {property.elevation}
+        </span>
+        <span class="text-white/40">|</span>
+        <span>PERMIT: {property.permitNumber}</span>
+      </div>
+      <div class="flex items-center space-x-5">
+        <a href={`tel:${property.contact.phone}`} class="hover:text-alpenglow transition-colors flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-alpenglow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          {property.contact.phoneFormatted}
+        </a>
+        <span class="text-white/40">|</span>
+        <a href={`mailto:${property.contact.email}`} class="hover:text-alpenglow transition-colors">
+          {property.contact.email}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <!-- Logo / Wordmark -->
+      <a href="/" class="flex items-center space-x-3 group">
+        <div class="w-9 h-9 border border-white/20 bg-charcoal-800 flex items-center justify-center rounded-alpine group-hover:border-alpenglow transition-colors">
+          <svg class="w-5 h-5 text-alpenglow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        <div>
+          <span class="block font-display text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-alabaster-200 transition-colors">
+            CONESTOGA <span class="text-alpenglow">112</span>
+          </span>
+          <span class="block text-[10px] font-mono uppercase tracking-widest text-alabaster-400">
+            Mammoth Lakes &bull; Eastern Sierra
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="/#residence" class="text-alabaster-200 hover:text-alpenglow transition-colors">The Residence</a>
+        <a href="/#highlights" class="text-alabaster-200 hover:text-alpenglow transition-colors">Amenities</a>
+        <a href="/#location" class="text-alabaster-200 hover:text-alpenglow transition-colors">Location</a>
+        <a href="/#reviews" class="text-alabaster-200 hover:text-alpenglow transition-colors">Reviews (4.91★)</a>
+        <a href="/#story" class="text-alabaster-200 hover:text-alpenglow transition-colors">Our Story</a>
+        <a href="/#faq" class="text-alabaster-200 hover:text-alpenglow transition-colors">Stay Guide</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="hidden sm:flex items-center space-x-4">
+        <a 
+          href="/#booking" 
+          class="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold text-white bg-alpenglow hover:bg-alpenglow-hover rounded-alpine transition-all duration-200 shadow-md hover:shadow-alpenglow/25 group overflow-hidden"
+        >
+          <span class="relative z-10 flex items-center gap-1.5">
+            Book Direct
+            <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex md:hidden items-center">
+        <button 
+          type="button" 
+          id="mobile-menu-button"
+          class="p-2 text-alabaster-200 hover:text-white border border-white/15 rounded-alpine bg-charcoal-800"
+          aria-label="Toggle Navigation Menu"
+        >
+          <svg class="w-6 h-6" id="menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="w-6 h-6 hidden" id="menu-icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-charcoal-950 border-b border-white/10 px-6 py-6 space-y-4">
+    <div class="text-xs font-mono text-alabaster-400 pb-2 border-b border-white/10 flex justify-between items-center">
+      <span>ELEV. 8,050 FT // UNIT 112</span>
+      <span class="text-alpenglow">TOML-CPAN-11083</span>
+    </div>
+    <nav class="flex flex-col space-y-3 font-display text-lg">
+      <a href="/#residence" class="text-white hover:text-alpenglow transition-colors py-1 mobile-link">The Residence</a>
+      <a href="/#highlights" class="text-white hover:text-alpenglow transition-colors py-1 mobile-link">Amenities</a>
+      <a href="/#location" class="text-white hover:text-alpenglow transition-colors py-1 mobile-link">Mountain Location</a>
+      <a href="/#reviews" class="text-white hover:text-alpenglow transition-colors py-1 mobile-link">Guest Reviews (4.91★)</a>
+      <a href="/#story" class="text-white hover:text-alpenglow transition-colors py-1 mobile-link">Our Story (Rog & Steph)</a>
+      <a href="/#faq" class="text-white hover:text-alpenglow transition-colors py-1 mobile-link">Stay Guide & Rules</a>
+    </nav>
+    <div class="pt-4 border-t border-white/10 flex flex-col gap-3">
+      <a 
+        href="/#booking" 
+        class="w-full text-center py-3 font-mono text-sm uppercase tracking-wider font-semibold text-white bg-alpenglow hover:bg-alpenglow-hover rounded-alpine mobile-link"
+      >
+        Check Rates & Book Direct
+      </a>
+      <a 
+        href={`tel:${property.contact.phone}`} 
+        class="w-full text-center py-2.5 font-mono text-xs text-alabaster-300 border border-white/15 rounded-alpine hover:bg-white/5"
+      >
+        Call Hosts: {property.contact.phoneFormatted}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  const links = document.querySelectorAll('.mobile-link');
+
+  function toggleMenu() {
+    if (!menu || !iconOpen || !iconClose) return;
+    const isHidden = menu.classList.contains('hidden');
+    if (isHidden) {
+      menu.classList.remove('hidden');
+      iconOpen.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+    } else {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  }
+
+  button?.addEventListener('click', toggleMenu);
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (menu && !menu.classList.contains('hidden')) {
+        toggleMenu();
+      }
+    });
+  });
+</script>

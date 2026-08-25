@@ -1,0 +1,128 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyMobileBar from '../components/StickyMobileBar.astro';
+import '../styles/global.css';
+import { property } from '../data/property';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = `${property.name} — ${property.tagline} | Official Direct Booking`,
+  description = `${property.subheadline} Studio + loft mountain condo with wood stove, remodeled bath, doorstep parking, and dog-friendly amenities in Mammoth Lakes, CA. Permit ${property.permitNumber}.`,
+  ogImage = "https://uc.orez.io/f/6ad09163df55492db71a01186cf3e37b",
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString() || "https://mammothconestoga112.com";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+
+const schemaOrgData = {
+  "@context": "https://schema.org",
+  "@type": "VacationRental",
+  "name": property.name,
+  "identifier": property.ownerRez.orpId,
+  "description": description,
+  "url": canonicalURL.toString(),
+  "image": [
+    "https://uc.orez.io/f/6ad09163df55492db71a01186cf3e37b",
+    "https://uc.orez.io/f/32888b2514d344a382b269f7e55a27c4",
+    "https://uc.orez.io/f/b3740cc29dd24326ab6fcd9d0de74284",
+    "https://uc.orez.io/f/ad7029650a254f71a79bd6b191fbf5bf",
+    "https://uc.orez.io/f/ea26c63e01a6439fafdfc3ce9fd8523a"
+  ],
+  "latitude": property.coordinates.lat,
+  "longitude": property.coordinates.lng,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Conestoga Complex Unit 112",
+    "addressLocality": property.address.city,
+    "addressRegion": property.address.state,
+    "postalCode": property.address.zip,
+    "addressCountry": property.address.country
+  },
+  "containsPlace": {
+    "@type": "Accommodation",
+    "occupancy": {
+      "@type": "QuantitativeValue",
+      "value": property.specs.maxGuests
+    },
+    "numberOfBedrooms": 1,
+    "numberOfBathroomsTotal": 1.5,
+    "floorSize": {
+      "@type": "QuantitativeValue",
+      "value": property.specs.sqft,
+      "unitCode": "SQFT"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.91",
+    "reviewCount": "257",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "priceRange": property.specs.baseRate,
+  "telephone": property.contact.phoneFormatted,
+  "email": property.contact.email
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Mammoth Lakes vacation rental, Mammoth Conestoga 112, Canyon Lodge cabin, pet friendly Mammoth condo, wood stove condo Mammoth, direct book Mammoth Lakes" />
+    <meta name="author" content="Roger & Stephanie" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1536" />
+    <meta property="og:site_name" content={property.name} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrgData)} />
+
+    <!-- OwnerRez Official Widget Script -->
+    <script src="https://app.ownerrez.com/widget.js" async defer></script>
+  </head>
+  <body class="bg-charcoal-900 text-alabaster-100 font-sans antialiased min-h-screen flex flex-col selection:bg-alpenglow selection:text-white">
+    <Header />
+    <main class="flex-grow pt-24">
+      <slot />
+    </main>
+    <Footer />
+    <StickyMobileBar />
+  </body>
+</html>

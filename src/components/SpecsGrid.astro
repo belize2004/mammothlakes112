@@ -1,0 +1,58 @@
+---
+import { property } from '../data/property';
+
+const specsList = [
+  { label: "ACCOMMODATION", value: property.specs.type, note: "Light & bright end-unit with vaulted ceiling" },
+  { label: "INTERIOR FOOTPRINT", value: `${property.specs.sqft} SQ FT`, note: "Open-concept living + elevated loft" },
+  { label: "ELEVATION", value: property.elevation, note: "High-alpine Eastern Sierra basecamp" },
+  { label: "MAXIMUM OCCUPANCY", value: `${property.specs.maxGuests} GUESTS`, note: "Ideal for couples & small mountain groups" },
+  { label: "SLEEPING ARRANGEMENT", value: "2 QUEEN BEDS", note: "Queen platform (loft) + Queen sleeper sofa (living)" },
+  { label: "BATHROOM CONFIGURATION", value: "1.5 BATHROOMS", note: "Full bath w/ walk-in shower (loft) + Half bath (main floor)" },
+  { label: "INTERNET & CONNECTIVITY", value: property.specs.wifiSpeed, note: "Suddenlink high-speed fiber for remote work" },
+  { label: "DEDICATED PARKING", value: `${property.specs.parkingSpaces} RESERVED SPACES`, note: "Directly outside the front door" },
+  { label: "PET POLICY", value: "DOGS WELCOME", note: "Equipped with Mud-Buster, towels & food/water bowls" },
+  { label: "ACCESS & CHECK-IN", value: "24/7 KEYPAD ENTRY", note: `Check-in: ${property.specs.checkIn} // Check-out: ${property.specs.checkOut}` },
+  { label: "TOWN OF MAMMOTH PERMIT", value: property.permitNumber, note: "Official certified transient occupancy registration" },
+  { label: "DIRECT BOOKING RATES", value: property.specs.baseRate, note: "Zero third-party OTA traveler service fees" },
+];
+---
+
+<section class="py-16 lg:py-24 bg-charcoal-900 border-t border-white/10 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="mb-12 pb-6 border-b border-white/10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div>
+        <div class="text-xs font-mono text-alpenglow uppercase tracking-widest mb-2">
+          <span>03 // RESIDENCE SPECIFICATION</span>
+        </div>
+        <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+          Architectural <span class="italic font-normal text-alabaster-200">Data Sheet.</span>
+        </h2>
+      </div>
+      <div class="text-xs font-mono text-alabaster-400">
+        UPDATED: 2026 // UNIT 112
+      </div>
+    </div>
+
+    <!-- Specs Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-alpine overflow-hidden">
+      {specsList.map((spec) => (
+        <div class="bg-charcoal-900 p-6 flex flex-col justify-between hover:bg-charcoal-850 transition-colors">
+          <div class="mb-4">
+            <span class="text-[11px] font-mono text-alabaster-400 tracking-wider uppercase block mb-1">
+              {spec.label}
+            </span>
+            <div class="font-mono text-lg sm:text-xl font-bold text-white tracking-tight">
+              {spec.value}
+            </div>
+          </div>
+          <p class="text-xs text-alabaster-300 font-light border-t border-white/5 pt-3">
+            {spec.note}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

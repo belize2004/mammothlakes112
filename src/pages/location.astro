@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LocationGuide from '../components/LocationGuide.astro';
+import BookingSection from '../components/BookingSection.astro';
+import { property } from '../data/property';
+---
+
+<Layout 
+  title={`Location & Mountain Access — ${property.name} | Mammoth Lakes, CA`}
+  description="Conveniently situated 0.5 miles from Canyon Lodge and less than a mile from The Village at Mammoth with doorstep parking and shuttle access."
+>
+  <div class="py-12 bg-charcoal-950 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-mono text-alpenglow uppercase tracking-widest block mb-2">{property.coordinates.display} &bull; {property.elevation}</span>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+        Mountain Location & <span class="italic font-normal text-alabaster-200">Proximity</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-sm sm:text-base text-alabaster-300 font-light">
+        Centrally positioned in Mammoth Lakes, California—minutes to world-class ski lifts, village dining, and alpine wilderness trailheads.
+      </p>
+    </div>
+  </div>
+
+  <LocationGuide />
+  <BookingSection />
+</Layout>

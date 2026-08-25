@@ -1,0 +1,94 @@
+---
+const highlights = [
+  {
+    index: "01",
+    title: "Real Wood Stove & Fireplace",
+    subtitle: "Tactile Sierra Warmth",
+    description: "Rebuilt stone hearth and mantle stocked with dry firewood and fire starter for genuine mountain comfort after sub-zero powder days.",
+    badge: "Firewood Provided",
+    image: "https://uc.orez.io/i/b40b2450ec1b4a47930ea090105ecc6f-LargeOriginal",
+  },
+  {
+    index: "02",
+    title: "Doorstep 2-Car Parking",
+    subtitle: "Zero-Hassle Loading",
+    description: "Two reserved parking spaces directly in front of the private entrance. Load and unload heavy ski gear, boards, and bags in seconds without hauling across snow-covered lots.",
+    badge: "Rare in Mammoth",
+    image: "https://uc.orez.io/i/1a04634bad18497da306830557f1cd91-LargeOriginal",
+  },
+  {
+    index: "03",
+    title: "Remodeled Gourmet Kitchen & Bath",
+    subtitle: "Custom Craftsmanship",
+    description: "Newly updated full bath with custom tile walk-in shower (Aug 2024) paired with a chef's kitchen featuring stainless appliances, granite sink, dishwasher, and Bonavita coffee.",
+    badge: "Remodeled 2024",
+    image: "https://uc.orez.io/f/ad7029650a254f71a79bd6b191fbf5bf",
+  },
+  {
+    index: "04",
+    title: "Dog-First Mountain Setup",
+    subtitle: "Adventure Pups Welcome",
+    description: "Equipped with an entryway Mud-Buster paw cleaner, designated dog towels, silicone feeding bowls, and couch protectors so your furry companions can travel in comfort.",
+    badge: "Dog-Friendly",
+    image: "https://uc.orez.io/i/a47f263436f14b53805db55e130770fc-LargeOriginal",
+  },
+];
+---
+
+<section id="highlights" class="py-20 lg:py-28 bg-charcoal-900 border-t border-white/10 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header (Grammar Rule #3: Monospace Utility + Expressive Display) -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/10 gap-6">
+      <div>
+        <div class="text-xs font-mono text-alpenglow uppercase tracking-widest mb-3 flex items-center gap-2">
+          <span>01 // THE BASECAMP ADVANTAGE</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          Engineered for the <span class="italic font-normal text-alabaster-200">Mountain Ritual.</span>
+        </h2>
+      </div>
+      <p class="text-sm sm:text-base text-alabaster-300 max-w-md font-light">
+        Purpose-built amenities designed around effortless gear staging, post-mountain recovery, and tactile mountain living.
+      </p>
+    </div>
+
+    <!-- 4-Card Highlight Grid with Clean Architectural Framing -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {highlights.map((item) => (
+        <div class="group relative flex flex-col bg-charcoal-850 border border-white/10 hover:border-alpenglow/60 rounded-alpine overflow-hidden transition-all duration-300 hover:shadow-alpine">
+          <!-- Image Container -->
+          <div class="relative aspect-[4/3] w-full overflow-hidden bg-charcoal-950">
+            <img 
+              src={item.image} 
+              alt={item.title} 
+              class="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-850 via-charcoal-850/30 to-transparent"></div>
+            <div class="absolute top-3 left-3 px-2.5 py-1 rounded-alpine bg-charcoal-900/90 border border-white/20 text-[10px] font-mono text-alabaster-200 uppercase tracking-widest backdrop-blur-md">
+              {item.badge}
+            </div>
+            <div class="absolute top-3 right-3 font-mono text-xs font-bold text-white/40 group-hover:text-alpenglow transition-colors">
+              {item.index}
+            </div>
+          </div>
+
+          <!-- Content Body -->
+          <div class="p-6 flex flex-col flex-grow">
+            <span class="text-xs font-mono text-alpenglow uppercase tracking-wider mb-1 block">
+              {item.subtitle}
+            </span>
+            <h3 class="font-display text-xl font-bold text-white mb-3 group-hover:text-alabaster-100 transition-colors">
+              {item.title}
+            </h3>
+            <p class="text-sm text-alabaster-300 font-light leading-relaxed flex-grow">
+              {item.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,75 @@
+---
+import { property } from '../data/property';
+
+const faqs = [
+  {
+    question: "What are the check-in and check-out times?",
+    answer: `Check-in is at ${property.specs.checkIn} and check-out is at ${property.specs.checkOut}. Access is 100% contactless via a secure electronic keypad on the front door. Your personal entry code will be provided prior to arrival.`,
+  },
+  {
+    question: "Where do we park, especially during snowy winter months?",
+    answer: "You have two reserved parking spaces located directly outside the front door of Unit 112. In heavy winter storms, snow clearance teams work quickly to plow the complex lot—please park closely and share space appropriately with neighbors.",
+  },
+  {
+    question: "What is your pet policy for dogs?",
+    answer: "We are dog lovers and warmly welcome well-behaved, house-trained dogs! We provide an entryway Mud-Buster paw cleaner, dog towels, food and water bowls, and couch covers. We ask that dogs are never left unattended in the condo and that you wipe muddy/snowy paws before entering carpeted areas.",
+  },
+  {
+    question: "Do you provide firewood for the wood stove?",
+    answer: "Yes! The hearth is stocked with dry firewood and fire starters for your stay. You also have central heating and ceiling fans for instant temperature control.",
+  },
+  {
+    question: "Is smoking permitted on the property?",
+    answer: "No. This is strictly a 100% non-smoking residence (including vape, tobacco, or cannabis) both inside the unit and directly around the entrance.",
+  },
+  {
+    question: "What is the internet speed for remote work?",
+    answer: "We provide high-speed Suddenlink cable internet with 250+ Mbps download speeds, easily supporting multiple Zoom/Teams video calls, 4K streaming, and remote file transfers.",
+  },
+  {
+    question: "What are the checkout requirements?",
+    answer: "We keep checkout simple: take out your trash to the complex bear-proof dumpster bins, start the dishwasher if full, turn down the heater, and make sure the front door deadbolt is securely locked.",
+  },
+];
+---
+
+<section id="faq" class="py-20 lg:py-28 bg-charcoal-900 border-t border-white/10 relative">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center mb-16 pb-6 border-b border-white/10">
+      <div class="text-xs font-mono text-alpenglow uppercase tracking-widest mb-3 inline-block">
+        <span>09 // ARRIVAL & GUEST LOGISTICS</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
+        Everything You Need <span class="italic font-normal text-alabaster-200">to Know.</span>
+      </h2>
+      <p class="text-sm text-alabaster-300 font-light max-w-lg mx-auto">
+        Clear, transparent guidelines for a seamless high-Sierra stay from arrival to departure.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="space-y-4">
+      {faqs.map((faq, idx) => (
+        <details class="group bg-charcoal-850 border border-white/10 rounded-alpine p-5 sm:p-6 transition-colors open:border-alpenglow/40">
+          <summary class="flex items-center justify-between cursor-pointer list-none text-base sm:text-lg font-display font-semibold text-white group-hover:text-alpenglow transition-colors">
+            <span class="flex items-center gap-3">
+              <span class="text-xs font-mono text-alabaster-400 font-normal">0{idx + 1}</span>
+              {faq.question}
+            </span>
+            <span class="p-1 rounded-alpine bg-white/5 border border-white/10 text-alabaster-300 group-open:rotate-180 transition-transform duration-200 flex-shrink-0 ml-3">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="mt-4 pt-4 border-t border-white/5 text-sm text-alabaster-300 font-light leading-relaxed">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>

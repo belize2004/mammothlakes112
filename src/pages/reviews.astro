@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
+import BookingSection from '../components/BookingSection.astro';
+import { property } from '../data/property';
+---
+
+<Layout 
+  title={`Guest Reviews (4.91★) — ${property.name} | Verified Testimonials`}
+  description="Read over 257+ verified direct reviews for Mammoth Conestoga 112. Rated 4.91 / 5.0 for cleanliness, location, wood stove warmth, and dog-friendly comfort."
+>
+  <div class="py-12 bg-charcoal-950 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-mono text-alpenglow uppercase tracking-widest block mb-2">VERIFIED DIRECT FEEDBACK</span>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+        Guest Reviews // <span class="italic font-normal text-alabaster-200">4.91 ★ Rating</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-sm sm:text-base text-alabaster-300 font-light">
+        Over 257+ verified direct guest reviews from skiers, snowboarders, hikers, and mountain dog lovers.
+      </p>
+    </div>
+  </div>
+
+  <ReviewsSection />
+  <BookingSection />
+</Layout>

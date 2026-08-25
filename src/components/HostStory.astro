@@ -1,0 +1,96 @@
+---
+import { property } from '../data/property';
+---
+
+<section id="story" class="py-20 lg:py-28 bg-charcoal-950 border-t border-white/10 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="mb-16 pb-6 border-b border-white/10">
+      <div class="text-xs font-mono text-alpenglow uppercase tracking-widest mb-3 flex items-center gap-2">
+        <span>06 // THE HOSTS BEHIND CONESTOGA 112</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+        24+ Years of High-Sierra Memories, <br class="hidden sm:inline" />
+        <span class="italic font-normal text-alabaster-200">Shared with You.</span>
+      </h2>
+    </div>
+
+    <!-- Story Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Photos of Rog & Steph / Isabella & Neva (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="relative rounded-alpine border border-white/15 overflow-hidden bg-charcoal-900 shadow-alpine">
+          <img 
+            src="https://uc.orez.io/i/cbaf670941f94c668ee641e8d7177849-LargeOriginal" 
+            alt="Isabella and Neva in Mammoth snow" 
+            class="w-full h-80 sm:h-96 object-cover object-center"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <span class="text-[10px] font-mono text-alpenglow uppercase tracking-widest block mb-1">
+              THE CONESTOGA CREW
+            </span>
+            <p class="text-sm font-display font-semibold text-white">
+              Isabella & Neva — Adopted in Big Pine, CA (2009)
+            </p>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-alpine bg-charcoal-900 border border-white/10 flex items-center justify-between text-xs font-mono text-alabaster-300">
+          <span>SUMMIT WEDDING: FEB 29, 2008</span>
+          <span class="text-alpenglow font-bold">11,053 FT ELEVATION</span>
+        </div>
+      </div>
+
+      <!-- Narrative Text (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-block px-3 py-1 rounded-alpine bg-white/5 border border-white/10 text-xs font-mono text-alabaster-300">
+          OWNER-HOSTED WITH DIRECT CARE
+        </div>
+
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
+          "We got married at 11,053 feet on Mammoth Mountain—and dreamed of opening our own mountain sanctuary ever since."
+        </h3>
+
+        <div class="space-y-4 text-sm sm:text-base text-alabaster-200 font-light leading-relaxed">
+          <p>
+            We live in Laguna Hills, CA, but have been coming to Mammoth together since we met back in 2000. Mammoth has been the backdrop to every defining moment in our lives—including getting married at the 11,053-foot summit on Leap Year Day in 2008!
+          </p>
+          <p>
+            On our way home from a ski trip in 2009, we stopped in Big Pine and adopted two beautiful rescue pups, Isabella and Neva. For years as dog parents and avid skiers, we struggled with how hard it was to find clean, thoughtfully cared-for, pet-friendly mountain lodging that wasn't overpriced or run-down.
+          </p>
+          <p>
+            When we acquired Unit 112 at Conestoga, we set out to build the exact basecamp we always wanted: a warm hearth with real wood, an upgraded kitchen where you can actually cook a great meal, a clean dog station right at the front door, and direct doorstep parking so you don't spend your trip hauling heavy gear across ice.
+          </p>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="font-display font-bold text-lg text-white">Roger & Stephanie ("Rog & Steph")</div>
+            <div class="text-xs font-mono text-alabaster-400">Owners & Hosts &bull; Mammoth Conestoga 112</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <a 
+              href={`tel:${property.contact.phone}`} 
+              class="px-4 py-2 rounded-alpine bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-mono text-white transition-colors"
+            >
+              {property.contact.phoneFormatted}
+            </a>
+            <a 
+              href={`mailto:${property.contact.email}`} 
+              class="px-4 py-2 rounded-alpine bg-alpenglow hover:bg-alpenglow-hover text-xs font-mono font-semibold text-white transition-colors"
+            >
+              Email Hosts
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

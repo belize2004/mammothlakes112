@@ -1,0 +1,100 @@
+---
+import { property } from '../data/property';
+---
+
+<section id="location" class="py-20 lg:py-28 bg-charcoal-900 border-t border-white/10 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/10 gap-6">
+      <div>
+        <div class="text-xs font-mono text-alpenglow uppercase tracking-widest mb-3 flex items-center gap-2">
+          <span>05 // MOUNTAIN PROXIMITY & LOCATION</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          Minutes Between Canyon Lodge <br class="hidden sm:inline" />
+          <span class="italic font-normal text-alabaster-200">& The Village.</span>
+        </h2>
+      </div>
+      <div class="text-xs font-mono text-alabaster-400 max-w-xs text-right">
+        <span>{property.coordinates.display}</span><br />
+        <span class="text-white">CONESTOGA COMPLEX &bull; MAMMOTH LAKES</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Distance Markers Cards (7 cols) -->
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {property.distances.map((spot) => (
+          <div class="bg-charcoal-850 border border-white/10 rounded-alpine p-6 flex flex-col justify-between hover:border-alpenglow/50 transition-colors group">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-[10px] font-mono text-alpenglow uppercase tracking-widest">
+                  {spot.type}
+                </span>
+                <span class="px-2 py-0.5 rounded-alpine bg-alpenglow/15 border border-alpenglow/30 font-mono text-xs font-bold text-alpenglow">
+                  {spot.distance}
+                </span>
+              </div>
+              <h3 class="font-display text-lg font-bold text-white mb-2 group-hover:text-alabaster-100 transition-colors">
+                {spot.destination}
+              </h3>
+              <p class="text-xs text-alabaster-300 font-light leading-relaxed">
+                {spot.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Feature Visual Box: Peek-a-boo Snow Check & Shuttle Tip (5 cols) -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        
+        <!-- Lincoln Mountain Snow Check Card -->
+        <div class="relative bg-charcoal-950 border border-white/15 rounded-alpine overflow-hidden p-6 sm:p-8 flex flex-col justify-between">
+          <div class="mb-6">
+            <span class="text-[11px] font-mono text-alpenglow uppercase tracking-widest block mb-2">
+              HOST SIGNATURE FEATURE
+            </span>
+            <h3 class="font-display text-2xl font-bold text-white mb-3">
+              The "Lincoln Mountain" Morning Snow Check
+            </h3>
+            <p class="text-sm text-alabaster-300 font-light leading-relaxed">
+              Brew a cup from the Bonavita thermal coffee maker and look right out the kitchen window for a peek-a-boo view of Lincoln Mountain. Gauge the morning fresh snow conditions before heading out for first chair.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-alabaster-400">
+            <span>DIRECT VIEW // KITCHEN NOOK</span>
+            <span class="text-alpenglow font-bold">8,050 FT BASE</span>
+          </div>
+        </div>
+
+        <!-- Free Transit & Carless Mountain Access -->
+        <div class="bg-charcoal-850 border border-white/10 rounded-alpine p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-alpine bg-white/10 flex items-center justify-center text-alpenglow">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-display text-base font-bold text-white">Free Mountain Shuttle Access</h4>
+              <span class="text-xs font-mono text-alabaster-400">100 Yards from Complex Entry</span>
+            </div>
+          </div>
+          <p class="text-xs text-alabaster-300 font-light leading-relaxed mb-3">
+            Hop on the free Eastern Sierra Transit / Mammoth Mountain bus routes to reach Main Lodge, Canyon Lodge, The Village, or the grocery store without touching your car keys or searching for parking.
+          </p>
+          <div class="text-[11px] font-mono text-alabaster-400 border-t border-white/5 pt-2 flex justify-between">
+            <span>GREEN LINE &bull; RED LINE</span>
+            <span class="text-white">YEAR-ROUND TRANSIT</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

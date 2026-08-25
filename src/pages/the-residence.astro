@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ResidenceShowcase from '../components/ResidenceShowcase.astro';
+import SpecsGrid from '../components/SpecsGrid.astro';
+import AmenitiesSection from '../components/AmenitiesSection.astro';
+import BookingSection from '../components/BookingSection.astro';
+import { property } from '../data/property';
+---
+
+<Layout 
+  title={`The Residence — ${property.name} | Studio + Loft Tour`}
+  description="Explore the complete photo tour, floor plan specifications, and detailed amenities of Unit 112 at the Conestoga Complex in Mammoth Lakes, CA."
+>
+  <div class="py-12 bg-charcoal-950 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-mono text-alpenglow uppercase tracking-widest block mb-2">ARCHITECTURAL TOUR</span>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+        The Residence // <span class="italic font-normal text-alabaster-200">Unit 112</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-sm sm:text-base text-alabaster-300 font-light">
+        A light-filled 612 sq. ft. end-unit mountain retreat with vaulted ceilings, real wood-burning stove, fully remodeled kitchen, and private loft master suite.
+      </p>
+    </div>
+  </div>
+
+  <ResidenceShowcase />
+  <SpecsGrid />
+  <AmenitiesSection />
+  <BookingSection />
+</Layout>

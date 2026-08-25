@@ -1,0 +1,110 @@
+---
+import { property } from '../data/property';
+---
+
+<section class="relative min-h-[90vh] lg:min-h-[92vh] flex items-center justify-center overflow-hidden bg-charcoal-950">
+  <!-- Background Image with High-Contrast Mountain Overlay -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="https://uc.orez.io/f/6ad09163df55492db71a01186cf3e37b" 
+      alt="Mammoth Conestoga 112 Living Area & Fireplace" 
+      class="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-subtle-zoom brightness-75"
+      loading="eager"
+    />
+    <!-- Multi-stage gradient overlays -->
+    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/60 to-charcoal-950/70"></div>
+    <div class="absolute inset-0 bg-radial-vignette opacity-70"></div>
+  </div>
+
+  <!-- Topographic Horizon Hairline -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+  <!-- Hero Content Container -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
+    
+    <!-- Topographic & Elevation Badge (Recognition Code #1) -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-alpine border border-white/15 bg-charcoal-900/80 backdrop-blur-md text-xs font-mono text-alabaster-300 tracking-wider mb-6 shadow-alpine-subtle">
+      <span class="inline-block w-2 h-2 rounded-full bg-alpenglow animate-pulse"></span>
+      <span>{property.coordinates.display}</span>
+      <span class="text-white/30">&bull;</span>
+      <span>ELEV. {property.elevation}</span>
+      <span class="text-white/30">&bull;</span>
+      <span class="text-alpenglow font-semibold">UNIT 112</span>
+    </div>
+
+    <!-- Main Editorial Display Headline -->
+    <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white max-w-5xl leading-[1.08] mb-6">
+      High-Elevation <br class="hidden sm:inline" />
+      <span class="italic font-normal text-alabaster-200">Sanctuary.</span>
+    </h1>
+
+    <!-- Supporting Narrative -->
+    <p class="max-w-2xl text-base sm:text-xl text-alabaster-200 font-light leading-relaxed mb-10 text-balance">
+      A refined mountain basecamp engineered for the cadence of the Eastern Sierra—where heavy-duty alpine readiness meets quiet timber warmth at 8,000 feet.
+    </p>
+
+    <!-- Key Trust & Feature Pills (Direct Recognition) -->
+    <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-10 max-w-4xl">
+      <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-alpine bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white backdrop-blur-sm">
+        <span class="text-amber-400 font-bold">★ 4.91</span>
+        <span class="text-alabaster-300">(257+ Verified Reviews)</span>
+      </div>
+      <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-alpine bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white backdrop-blur-sm">
+        <svg class="w-4 h-4 text-alpenglow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>0.5 Mi to Canyon Lodge</span>
+      </div>
+      <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-alpine bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white backdrop-blur-sm">
+        <svg class="w-4 h-4 text-alpenglow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span>Dogs Welcome</span>
+      </div>
+      <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-alpine bg-white/10 border border-white/15 text-xs sm:text-sm font-medium text-white backdrop-blur-sm">
+        <svg class="w-4 h-4 text-alpenglow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span>2 Reserved Doorstep Parking Spots</span>
+      </div>
+    </div>
+
+    <!-- High-Conversion Quick Booking Action Bar -->
+    <div class="w-full max-w-xl p-2 sm:p-2.5 rounded-alpine bg-charcoal-900/90 border border-white/20 backdrop-blur-xl shadow-alpine flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="text-left px-3 py-1">
+        <span class="block text-[11px] font-mono text-alabaster-400 uppercase tracking-widest">Seasonal Rates</span>
+        <div class="flex items-baseline gap-1">
+          <span class="text-xl sm:text-2xl font-bold font-mono text-white">{property.specs.baseRate}</span>
+          <span class="text-xs text-alabaster-400 font-mono">/ direct booking</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <a 
+          href="#residence" 
+          class="flex-1 sm:flex-none px-4 py-3 rounded-alpine text-xs font-mono uppercase tracking-wider text-alabaster-200 hover:text-white bg-white/5 hover:bg-white/10 border border-white/15 transition-colors text-center"
+        >
+          Tour Space
+        </a>
+        <a 
+          href="#booking" 
+          class="flex-1 sm:flex-none px-6 py-3 rounded-alpine text-xs font-mono uppercase tracking-wider font-semibold text-white bg-alpenglow hover:bg-alpenglow-hover transition-all duration-200 shadow-md hover:shadow-alpenglow/30 text-center flex items-center justify-center gap-1.5"
+        >
+          Check Dates
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Scroll Cue -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-alabaster-400 hover:text-white transition-colors">
+    <span class="text-[10px] font-mono uppercase tracking-widest text-alabaster-400">Explore Residence</span>
+    <svg class="w-4 h-4 animate-bounce text-alpenglow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>
