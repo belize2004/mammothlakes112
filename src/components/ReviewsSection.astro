@@ -7,7 +7,7 @@ import { property } from '../data/property';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/10 gap-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/10 gap-6">
       <div>
         <div class="text-xs font-mono text-alpenglow uppercase tracking-widest mb-3 flex items-center gap-2">
           <span>08 // VERIFIED GUEST TESTIMONIALS</span>
@@ -18,63 +18,156 @@ import { property } from '../data/property';
         </h2>
       </div>
 
-      <!-- Rating Pill -->
+      <!-- Rating Header Badge -->
       <div class="flex items-center gap-4 bg-charcoal-900 border border-white/15 px-5 py-3 rounded-alpine">
         <div class="text-3xl font-display font-bold text-white flex items-center gap-1">
           <span class="text-amber-400">★</span>
           <span>{reviewsSummary.averageRating}</span>
         </div>
         <div class="text-xs font-mono text-alabaster-400 border-l border-white/10 pl-4">
-          <span class="text-white font-semibold block">{reviewsSummary.totalReviews}+ Verified Reviews</span>
+          <span class="text-white font-semibold block">{reviewsSummary.totalReviews}+ Direct Reviews</span>
           <span>{reviewsSummary.recommendationPercentage}% Recommended</span>
         </div>
       </div>
     </div>
 
-    <!-- Featured Reviews Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-      {featuredReviews.map((rev) => (
-        <div class="bg-charcoal-900 border border-white/10 rounded-alpine p-7 flex flex-col justify-between hover:border-white/20 transition-colors">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center gap-1 text-amber-400 text-sm">
-                {"★".repeat(rev.rating)}
-              </div>
-              <span class="text-[10px] font-mono text-alabaster-400 uppercase tracking-wider">
-                {rev.source} &bull; {rev.date}
-              </span>
-            </div>
-            <p class="text-sm sm:text-base text-alabaster-200 font-light leading-relaxed mb-6 italic">
-              "{rev.comment}"
-            </p>
-          </div>
-          <div class="flex items-center justify-between pt-4 border-t border-white/5 text-xs font-mono">
-            <span class="font-bold text-white">{rev.author}</span>
-            <span class="text-alabaster-400">{rev.location}</span>
+    <!-- Category Ratings Breakdown Bar (Native Scorecard) -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-12">
+      {reviewsSummary.categories.map((cat) => (
+        <div class="bg-charcoal-900 border border-white/10 rounded-alpine p-3 text-center">
+          <span class="text-[10px] font-mono text-alabaster-400 uppercase tracking-wider block mb-1 truncate">
+            {cat.name}
+          </span>
+          <div class="flex items-center justify-center gap-1 font-mono text-sm font-bold text-white">
+            <span class="text-amber-400 text-xs">★</span>
+            <span>{cat.score}</span>
           </div>
         </div>
       ))}
     </div>
 
-    <!-- Live OwnerRez Reviews Widget Stream Container -->
-    <div class="bg-charcoal-900 border border-white/15 rounded-alpine p-6 sm:p-8 shadow-alpine">
-      <div class="mb-6 pb-4 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        <div>
-          <span class="text-[10px] font-mono text-alpenglow uppercase tracking-widest block">FULL REVIEWS FEED</span>
-          <h3 class="font-display text-xl font-bold text-white">Live Verified Guest Archive</h3>
-        </div>
-        <span class="text-xs font-mono text-alabaster-400">Directly synchronized via OwnerRez</span>
-      </div>
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap gap-2 mb-8 pb-3 border-b border-white/5" id="reviews-tabs">
+      <button 
+        type="button" 
+        data-category="all"
+        class="review-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider rounded-alpine bg-alpenglow text-white border border-alpenglow font-semibold transition-all active-review-tab"
+      >
+        All Highlights ({featuredReviews.length})
+      </button>
+      <button 
+        type="button" 
+        data-category="ski"
+        class="review-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider rounded-alpine bg-charcoal-900 text-alabaster-300 border border-white/10 hover:border-white/30 hover:text-white transition-all"
+      >
+        ⛷️ Ski & Canyon Lodge
+      </button>
+      <button 
+        type="button" 
+        data-category="dog"
+        class="review-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider rounded-alpine bg-charcoal-900 text-alabaster-300 border border-white/10 hover:border-white/30 hover:text-white transition-all"
+      >
+        🐾 Dog-Friendly
+      </button>
+      <button 
+        type="button" 
+        data-category="comfort"
+        class="review-tab px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider rounded-alpine bg-charcoal-900 text-alabaster-300 border border-white/10 hover:border-white/30 hover:text-white transition-all"
+      >
+        🏡 Comfort & Hearth
+      </button>
+    </div>
 
-      <div class="ownerrez-container bg-white rounded-alpine p-4 text-charcoal-900 shadow-inner overflow-hidden min-h-[300px]">
+    <!-- Native Verified Reviews Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="reviews-grid">
+      {featuredReviews.map((rev) => (
         <div 
-          class="ownerrez-widget" 
-          data-propertyId={property.ownerRez.propertyId} 
-          data-widget-type="Reviews" 
-          data-widgetId={property.ownerRez.reviewsWidgetId}
-        ></div>
+          class="review-card bg-charcoal-900 border border-white/10 rounded-alpine p-6 flex flex-col justify-between hover:border-white/20 transition-all duration-200"
+          data-category={rev.category}
+        >
+          <div>
+            <!-- Review Top Bar -->
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-0.5 text-amber-400 text-xs">
+                {"★".repeat(rev.rating)}
+              </div>
+              <span class="px-2 py-0.5 rounded-alpine bg-white/5 border border-white/10 text-[9px] font-mono text-alabaster-300 uppercase tracking-widest">
+                {rev.source}
+              </span>
+            </div>
+
+            {rev.highlightBadge && (
+              <div class="text-[10px] font-mono text-alpenglow uppercase tracking-wider mb-2 font-semibold">
+                {rev.highlightBadge}
+              </div>
+            )}
+
+            <!-- Comment Text -->
+            <p class="text-xs sm:text-sm text-alabaster-200 font-light leading-relaxed mb-6 italic">
+              "{rev.comment}"
+            </p>
+          </div>
+
+          <!-- Author Info -->
+          <div class="flex items-center justify-between pt-4 border-t border-white/5 text-xs font-mono">
+            <span class="font-bold text-white flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+              {rev.author}
+            </span>
+            <span class="text-alabaster-400">{rev.location} &bull; {rev.date}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Verified Guarantee Footer Banner -->
+    <div class="p-6 rounded-alpine bg-charcoal-900 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-alabaster-400">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-alpine bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+        <div>
+          <span class="text-white font-semibold block">100% Verified Direct Guest Reviews</span>
+          <span>Aggregated from {reviewsSummary.totalReviews}+ stays managed through OwnerRez</span>
+        </div>
       </div>
+      <a 
+        href="#booking" 
+        class="px-4 py-2 rounded-alpine bg-alpenglow hover:bg-alpenglow-hover text-white font-semibold uppercase tracking-wider text-xs transition-colors flex-shrink-0"
+      >
+        Book Your Stay &rarr;
+      </a>
     </div>
 
   </div>
 </section>
+
+<script>
+  const tabs = document.querySelectorAll('.review-tab');
+  const cards = document.querySelectorAll('.review-card');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('bg-alpenglow', 'text-white', 'border-alpenglow', 'font-semibold', 'active-review-tab');
+        t.classList.add('bg-charcoal-900', 'text-alabaster-300', 'border-white/10');
+      });
+
+      tab.classList.add('bg-alpenglow', 'text-white', 'border-alpenglow', 'font-semibold', 'active-review-tab');
+      tab.classList.remove('bg-charcoal-900', 'text-alabaster-300', 'border-white/10');
+
+      const category = tab.getAttribute('data-category');
+
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
