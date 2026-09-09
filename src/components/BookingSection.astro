@@ -96,7 +96,7 @@ import { property } from '../data/property';
                 type="date" 
                 id="check-in-date" 
                 name="arrival"
-                class="w-full bg-charcoal-900 border border-white/15 rounded-alpine px-3.5 py-2.5 text-sm font-mono text-white focus:outline-none focus:border-alpenglow transition-colors"
+                class="w-full bg-charcoal-900 border border-white/15 rounded-alpine px-3.5 py-2.5 text-base sm:text-sm font-mono text-white focus:outline-none focus:border-alpenglow transition-colors"
                 required
               />
             </div>
@@ -108,7 +108,7 @@ import { property } from '../data/property';
                 type="date" 
                 id="check-out-date" 
                 name="departure"
-                class="w-full bg-charcoal-900 border border-white/15 rounded-alpine px-3.5 py-2.5 text-sm font-mono text-white focus:outline-none focus:border-alpenglow transition-colors"
+                class="w-full bg-charcoal-900 border border-white/15 rounded-alpine px-3.5 py-2.5 text-base sm:text-sm font-mono text-white focus:outline-none focus:border-alpenglow transition-colors"
                 required
               />
             </div>
@@ -123,7 +123,7 @@ import { property } from '../data/property';
               <select 
                 id="guest-count" 
                 name="guests"
-                class="w-full bg-charcoal-900 border border-white/15 rounded-alpine px-3.5 py-2.5 text-sm font-mono text-white focus:outline-none focus:border-alpenglow transition-colors"
+                class="w-full bg-charcoal-900 border border-white/15 rounded-alpine px-3.5 py-2.5 text-base sm:text-sm font-mono text-white focus:outline-none focus:border-alpenglow transition-colors"
               >
                 <option value="1">1 Guest</option>
                 <option value="2" selected>2 Guests (Ideal)</option>
@@ -138,7 +138,7 @@ import { property } from '../data/property';
               <select 
                 id="pets-count" 
                 name="pets"
-                class="w-full bg-charcoal-900 border border-white/15 rounded-alpine px-3.5 py-2.5 text-sm font-mono text-white focus:outline-none focus:border-alpenglow transition-colors"
+                class="w-full bg-charcoal-900 border border-white/15 rounded-alpine px-3.5 py-2.5 text-base sm:text-sm font-mono text-white focus:outline-none focus:border-alpenglow transition-colors"
               >
                 <option value="0">No Dogs</option>
                 <option value="1">1 Dog 🐾</option>
@@ -257,11 +257,27 @@ import { property } from '../data/property';
   const checkInInput = document.getElementById('check-in-date') as HTMLInputElement | null;
   const checkOutInput = document.getElementById('check-out-date') as HTMLInputElement | null;
 
-  if (checkInInput) {
+  if (checkInInput && checkOutInput) {
     checkInInput.min = today;
+    
+    // Set tomorrow as default minimum checkout
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    checkOutInput.min = tomorrow.toISOString().split('T')[0];
+
     checkInInput.addEventListener('change', () => {
-      if (checkOutInput && checkInInput.value) {
-        checkOutInput.min = checkInInput.value;
+      if (checkInInput.value) {
+        const inDate = new Date(checkInInput.value);
+        const minOutDate = new Date(inDate);
+        minOutDate.setDate(minOutDate.getDate() + 1);
+        const minOutStr = minOutDate.toISOString().split('T')[0];
+        
+        checkOutInput.min = minOutStr;
+
+        // If checkout is empty or before the new minimum checkout date, auto-set to +1 night
+        if (!checkOutInput.value || checkOutInput.value <= checkInInput.value) {
+          checkOutInput.value = minOutStr;
+        }
       }
     });
   }

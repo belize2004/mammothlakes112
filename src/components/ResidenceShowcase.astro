@@ -94,7 +94,7 @@ import { photos, photoCategories } from '../data/photos';
       <button 
         type="button" 
         id="lightbox-close"
-        class="p-2 text-alabaster-300 hover:text-white border border-white/15 rounded-alpine bg-charcoal-900 hover:bg-white/10 transition-colors"
+        class="w-11 h-11 flex items-center justify-center text-alabaster-300 hover:text-white border border-white/15 rounded-alpine bg-charcoal-900 hover:bg-white/10 transition-colors"
         aria-label="Close Lightbox"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,7 +109,7 @@ import { photos, photoCategories } from '../data/photos';
       <button 
         type="button" 
         id="lightbox-prev"
-        class="absolute left-2 sm:left-6 z-10 p-3 text-white border border-white/20 rounded-alpine bg-charcoal-900/80 hover:bg-alpenglow hover:border-alpenglow transition-colors"
+        class="absolute left-2 sm:left-6 z-10 w-12 h-12 flex items-center justify-center text-white border border-white/20 rounded-alpine bg-charcoal-900/80 hover:bg-alpenglow hover:border-alpenglow transition-colors shadow-lg"
         aria-label="Previous Image"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@ import { photos, photoCategories } from '../data/photos';
       <button 
         type="button" 
         id="lightbox-next"
-        class="absolute right-2 sm:right-6 z-10 p-3 text-white border border-white/20 rounded-alpine bg-charcoal-900/80 hover:bg-alpenglow hover:border-alpenglow transition-colors"
+        class="absolute right-2 sm:right-6 z-10 w-12 h-12 flex items-center justify-center text-white border border-white/20 rounded-alpine bg-charcoal-900/80 hover:bg-alpenglow hover:border-alpenglow transition-colors shadow-lg"
         aria-label="Next Image"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,6 +234,25 @@ import { photos, photoCategories } from '../data/photos';
   modal?.addEventListener('click', (e) => {
     if (e.target === modal) closeLightbox();
   });
+
+  // Mobile Touch Swipe Gesture Support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  modal?.addEventListener('touchstart', (e: TouchEvent) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  modal?.addEventListener('touchend', (e: TouchEvent) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+      nextImage(); // Swiped left -> next photo
+    }
+    if (touchEndX > touchStartX + swipeThreshold) {
+      prevImage(); // Swiped right -> prev photo
+    }
+  }, { passive: true });
 
   window.addEventListener('keydown', (e) => {
     if (modal && !modal.classList.contains('hidden')) {
