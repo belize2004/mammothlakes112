@@ -239,11 +239,11 @@ import { photos, photoCategories } from '../data/photos';
   let touchStartX = 0;
   let touchEndX = 0;
 
-  modal?.addEventListener('touchstart', (e: TouchEvent) => {
+  modal?.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
   }, { passive: true });
 
-  modal?.addEventListener('touchend', (e: TouchEvent) => {
+  modal?.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     const swipeThreshold = 50;
     if (touchEndX < touchStartX - swipeThreshold) {
